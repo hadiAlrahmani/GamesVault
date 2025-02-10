@@ -1,0 +1,41 @@
+/* Center the form */
+.auth-form {
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style form inputs */
+.auth-form input {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* Style buttons */
+.auth-form .btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Button hover effect */
+.auth-form .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Error message */
+.error-msg {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}

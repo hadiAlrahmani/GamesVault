@@ -1,0 +1,9 @@
+<%- include('partials/head') %>
+
+<% if (user) { %>
+    <h1>Welcome to GamesVault, <%= user.username %>!</h1>
+<% } else { %>
+    <h1>Welcome to GamesVault, guest.</h1>
+<% } %>
+
+<%- include('partials/footer') %>

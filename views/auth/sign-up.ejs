@@ -1,0 +1,23 @@
+<%- include('../partials/head') %>
+
+<div class="container">
+    <h1>Create a new account</h1>
+    <form action="/auth/sign-up" method="POST" class="auth-form">
+        <label>Username:</label>
+        <input type="text" name="username" required>
+
+        <label>Email:</label>
+        <input type="email" name="email" required>
+
+        <label>Password:</label>
+        <input type="password" name="password" required>
+
+        <button type="submit" class="btn">Sign Up</button>
+
+        <% if (msg) { %>
+            <p class="error-msg"><%= msg %></p>
+        <% } %>
+    </form>
+</div>
+
+<%- include('../partials/footer') %>
