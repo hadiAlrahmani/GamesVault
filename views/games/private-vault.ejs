@@ -1,0 +1,26 @@
+<%- include('../partials/head') %>
+
+<div class="container">
+    <h1><%= user.username %>'s Private Vault</h1>
+
+    <a href="/games/add" class="btn btn-success mb-3">+ Add New Game</a>
+
+    <% if (games.length === 0) { %>
+        <p>No games added yet. <a href="/games/add">Add your first game!</a></p>
+    <% } else { %>
+        <div class="game-list">
+            <% games.forEach(game => { %>
+                <div class="game-card">
+                    <a href="/games/<%= game._id %>">
+                        <img src="<%= game.image %>" alt="<%= game.title %>">
+                        <h2><%= game.title %></h2>
+                        <p><strong>Release Year:</strong> <%= game.releaseYear %></p>
+                        <p><strong>Visibility:</strong> <%= game.isPublic ? 'Public' : 'Private' %></p>
+                    </a>
+                </div>
+            <% }) %>
+        </div>
+    <% } %>
+</div>
+
+<%- include('../partials/footer') %>

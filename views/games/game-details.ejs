@@ -1,0 +1,21 @@
+<%- include('../partials/head') %>
+
+<div class="container">
+    <h1><%= game.title %></h1>
+    <img src="<%= game.image %>" alt="<%= game.title %>" class="game-img">    <p><strong>Description:</strong> <%= game.description %></p>
+    <p><strong>Release Year:</strong> <%= game.releaseYear %></p>
+    <p><strong>Owner:</strong> <%= game.owner.username %></p>
+    <p><strong>Visibility:</strong> <%= game.isPublic ? 'Public' : 'Private' %></p>
+
+    <!-- Show Edit & Delete Buttons only if the logged-in user is the owner -->
+    <% if (user && user._id.toString() === game.owner._id.toString()) { %>
+        <a href="/games/<%= game._id %>/edit" class="btn btn-primary">Edit</a>
+        <form action="/games/<%= game._id %>?_method=DELETE" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete <%= game.title %>?');">Delete</button>
+        </form>
+    <% } %>
+
+    <a href="/private-vault" class="btn btn-secondary">Back to Vault</a>
+</div>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,29 @@
+<%- include('../partials/head') %>
+
+<div class="container">
+    <h1>Add a New Game</h1>
+
+    <form action="/games/add" method="POST">
+        <label>Game Title:</label>
+        <input type="text" name="title" required>
+
+        <label>Description:</label>
+        <textarea name="description" required></textarea>
+
+        <label>Image URL:</label>
+        <input type="text" name="image" required>
+
+        <label>Release Year:</label>
+        <input type="number" name="releaseYear" required>
+
+        <label>Visibility:</label>
+        <select name="isPublic">
+            <option value="false" selected>Private</option>
+            <option value="true">Public</option>
+        </select>
+
+        <button type="submit" class="btn btn-primary">Add Game</button>
+    </form>
+</div>
+
+<%- include('../partials/footer') %>
