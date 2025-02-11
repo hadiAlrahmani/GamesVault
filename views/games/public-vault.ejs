@@ -1,0 +1,24 @@
+<%- include('../partials/head') %>
+
+<div class="container">
+    <h1>GamesVault (Public Library)</h1>
+
+    <% if (games.length === 0) { %>
+        <p>No public games available.</p>
+    <% } else { %>
+        <div class="game-list">
+            <% games.forEach(game => { %>
+                <div class="game-card">
+                    <a href="/games/<%= game._id %>">
+                        <img src="<%= game.image %>" alt="<%= game.title %>">
+                        <h2><%= game.title %></h2>
+                        <p><strong>Release Year:</strong> <%= game.releaseYear %></p>
+                        <p><strong>Added By:</strong> <%= game.owner.username %></p>
+                    </a>
+                </div>
+            <% }) %>
+        </div>
+    <% } %>
+</div>
+
+<%- include('../partials/footer') %>

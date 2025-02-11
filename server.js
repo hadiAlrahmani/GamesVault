@@ -66,12 +66,12 @@ app.use(passUserToView)
 
 
 //! CONTROLLERS
-const pagesCtrl = require('./controllers/pages')
+const gamesVaultCtrl = require('./controllers/gamesvault')
 const authCtrl = require('./controllers/auth')
 const gamesCtrl = require('./controllers/games')
 
 //! ROUTES
-app.get('/', pagesCtrl.home)
+app.get('/', gamesVaultCtrl.home)
 app.get('/auth/sign-up', authCtrl.signUp)
 app.post('/auth/sign-up', authCtrl.addUser)
 app.get('/auth/sign-in', authCtrl.signInForm)

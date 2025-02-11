@@ -31,10 +31,10 @@ const addGame = async (req, res) => {
             image: req.body.image,
             releaseYear: req.body.releaseYear,
             isPublic: req.body.isPublic === 'true', // Convert string to boolean
-            owner: req.session.user._id // Link the game to the logged-in user
+            owner: req.session.user._id
         })
 
-        res.redirect('/private-vault') // Redirect back to Private Vault
+        res.redirect('/private-vault')
     } catch (error) {
         console.error('Error adding game:', error)
         res.redirect('/games/add')
@@ -45,12 +45,17 @@ const getGameDetails = async (req, res) => {
     try {
         const game = await Game.findById(req.params.id).populate('owner', '_id username')
         if (!game) {
-            return res.redirect('/private-vault')
+            return res.redirect('/')
         }
-        res.render('games/game-details.ejs', { title: game.title, game, user: req.session.user })
+
+        res.render('games/game-details.ejs', { 
+            title: game.title, 
+            game, 
+            user: req.session.user
+        })
     } catch (error) {
         console.error('Error fetching game details:', error)
-        res.redirect('/private-vault')
+        res.redirect('/')
     }
 }
 
@@ -103,4 +108,15 @@ const deleteGame = async (req, res) => {
     }
 }
 
-module.exports = { privateVault, addGameForm, addGame, getGameDetails, editGameForm, updateGame, deleteGame }
+const publicVault = async (req, res) => {
+    try {
+        const publicGames = await Game.find({ isPublic: true }).populate('owner', 'username')
+        res.render('games/public-vault.ejs', { title: 'GamesVault', games: publicGames })
+    } catch (error) {
+        console.error('Error fetching public games:', error)
+        res.redirect('/')
+    }
+}
+
+
+module.exports = { privateVault, addGameForm, addGame, getGameDetails, editGameForm, updateGame, deleteGame, publicVault }
