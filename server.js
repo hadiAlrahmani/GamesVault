@@ -69,6 +69,7 @@ app.use(passUserToView)
 const gamesVaultCtrl = require('./controllers/gamesvault')
 const authCtrl = require('./controllers/auth')
 const gamesCtrl = require('./controllers/games')
+const profileCtrl = require('./controllers/userProfile')
 
 //! ROUTES
 app.get('/', gamesVaultCtrl.home)
@@ -84,9 +85,11 @@ app.get('/games/:id', gamesCtrl.getGameDetails)
 app.get('/games/:id/edit', isSignedIn, gamesCtrl.editGameForm)
 app.put('/games/:id', isSignedIn, gamesCtrl.updateGame)
 app.delete('/games/:id', isSignedIn, gamesCtrl.deleteGame)
-
+app.get('/search', gamesCtrl.searchGames)
+app.get('/user/profile', isSignedIn, profileCtrl.viewProfile )
 
 //! START THE SERVER
 app.listen(port, () => {
     console.log(`Server running on port ${port}`)
 })
+

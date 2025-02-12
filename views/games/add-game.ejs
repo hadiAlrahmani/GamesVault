@@ -1,28 +1,29 @@
 <%- include('../partials/head') %>
 
 <div class="container">
-    <h1>Add a New Game</h1>
+    <h1 class="text-center">Add a New Game</h1>
 
-    <form action="/games/add" method="POST">
-        <label>Game Title:</label>
-        <input type="text" name="title" required>
+    <form action="/games/add" method="POST" class="add-game-form">
+        <label for="title">Game Title:</label>
+        <input type="text" id="title" name="title" placeholder="Enter game title" required>
 
-        <label>Description:</label>
-        <textarea name="description" required></textarea>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" placeholder="Enter game description" required></textarea>
 
-        <label>Image URL:</label>
-        <input type="text" name="image" required>
+        <label for="image">Image URL:</label>
+        <input type="text" id="image" name="image" placeholder="Enter image URL" required>
 
-        <label>Release Year:</label>
-        <input type="number" name="releaseYear" required>
+        <label for="releaseYear">Release Year:</label>
+        <input type="number" id="releaseYear" name="releaseYear" placeholder="Enter release year" required>
 
-        <label>Visibility:</label>
-        <select name="isPublic">
-            <option value="false" selected>Private</option>
+        <label for="isPublic">Game Visibility:</label>
+        <select id="isPublic" name="isPublic" required>
+            <option value="" disabled selected>Select Visibility</option>
             <option value="true">Public</option>
+            <option value="false">Private</option>
         </select>
 
-        <button type="submit" class="btn btn-primary">Add Game</button>
+        <button type="submit">Add Game</button>
     </form>
 </div>
 

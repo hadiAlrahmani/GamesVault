@@ -1,15 +1,10 @@
 <%- include('../partials/head') %>
 
 <div class="container">
-    <h1>GamesVault (Public Library)</h1>
+    <h1>Search Results</h1>
 
-    <form action="/search" method="GET" class="search-form">
-        <input type="text" name="query" placeholder="Search games..." required>
-        <button type="submit" class="btn btn-primary">Search</button>
-    </form>
-    
     <% if (games.length === 0) { %>
-        <p>No public games available.</p>
+        <p>No games found for "<%= query %>".</p>
     <% } else { %>
         <div class="game-list">
             <% games.forEach(game => { %>

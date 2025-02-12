@@ -119,4 +119,35 @@ const publicVault = async (req, res) => {
 }
 
 
-module.exports = { privateVault, addGameForm, addGame, getGameDetails, editGameForm, updateGame, deleteGame, publicVault }
+const searchGames = async (req, res) => {
+    try {
+        const query = req.query.query // Get search term from URL
+        const user = req.session.user // Get logged-in user (if any)
+
+        // Search games by title (case-insensitive)
+        const searchResults = await Game.find({
+            title: { $regex: query, $options: 'i' }, // 'i' makes it case-insensitive
+            $or: [
+                { isPublic: true }, // Public games (everyone can see)
+                user ? { owner: user._id } : {} // User's private games (only they can see)
+            ]
+        }).populate('owner', 'username')
+
+        res.render('games/search-results.ejs', { title: 'Search Results', games: searchResults, user })
+    } catch (error) {
+        console.error('Error during game search:', error)
+        res.redirect('/')
+    }
+}
+
+module.exports = { 
+    privateVault,
+    addGameForm,
+    addGame,
+    getGameDetails,
+    editGameForm,
+    updateGame,
+    deleteGame,
+    publicVault,
+    searchGames 
+}

@@ -1,9 +1,12 @@
 <%- include('../partials/head') %>
 
 <div class="container">
+    
     <h1><%= user.username %>'s Private Vault</h1>
 
-    <a href="/games/add" class="btn btn-success mb-3">+ Add New Game</a>
+    <div class="add-game-container">
+        <a href="/games/add" class="btn btn-success">+ Add New Game</a>
+    </div>
 
     <% if (games.length === 0) { %>
         <p>No games added yet. <a href="/games/add">Add your first game!</a></p>
