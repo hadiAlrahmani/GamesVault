@@ -82,7 +82,7 @@ const updateGame = async (req, res) => {
         if (!game || game.owner.toString() !== req.session.user._id.toString()) {
             return res.redirect('/private-vault')
         }
-        // Update game details with the new
+
         game.title = req.body.title
         game.description = req.body.description
         game.image = req.body.image
@@ -136,7 +136,9 @@ const searchGames = async (req, res) => {
             ]
         }).populate('owner', 'username')
 
-        res.render('games/search-results.ejs', { title: 'Search Results', games: searchResults, user })
+        const noResults = searchResults.length === 0
+
+        res.render('games/search-results.ejs', { title: 'Search Results', games: searchResults, user, query, noResults })
     } catch (error) {
         console.error('Error during game search:', error)
         res.redirect('/')

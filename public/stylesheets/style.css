@@ -280,3 +280,143 @@ button:hover, .btn:hover {
 .add-game-container .btn:hover {
     background-color: #218838;
 }
+
+.no-results {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: red;
+    margin-top: 20px;
+}
+
+.edit-game-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #1a1a1a;
+    border: 2px solid #0dcaf0;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(13, 202, 240, 0.5);
+}
+
+/* done with extra help from internet */
+.edit-game-container h1 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #0dcaf0;
+    margin-bottom: 20px;
+}
+
+.edit-game-form label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #f8f9fa;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.edit-game-form input,
+.edit-game-form textarea,
+.edit-game-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background: #2a2a2a;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.edit-game-form textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.edit-game-form button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #0dcaf0;
+    color: #121212;
+    transition: 0.3s;
+}
+
+.edit-game-form button:hover {
+    background: #0bb8e0;
+    color: white;
+}
+
+.edit-game-form .form-group {
+    margin-bottom: 15px;
+}
+
+.edit-game-form .visibility-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.edit-game-form .visibility-toggle label {
+    font-size: 14px;
+    color: #ccc;
+}
+
+@media (max-width: 600px) {
+    .edit-game-container {
+        width: 90%;
+        padding: 15px;
+    }
+}
+
+.modal-content {
+    background-color: #222;
+    color: #f8f9fa; 
+    border: 2px solid #0dcaf0; 
+}
+
+.modal-header {
+    background-color: #0dcaf0; 
+    color: #121212; 
+    border-bottom: 2px solid #0bb8e0;
+}
+
+.modal-footer {
+    background-color: #1a1a1a;
+    border-top: 1px solid #444;
+}
+
+.modal-title {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.modal-body {
+    font-size: 16px;
+    color: #ccc;
+}
+
+.modal-header .btn-close {
+    filter: invert(1); 
+}
+
+.modal-footer .btn-secondary {
+    background-color: #555;
+    border: none;
+}
+
+.modal-footer .btn-danger {
+    background-color: #ff4b4b;
+    color: white;
+    border: none;
+}
+
+.modal-footer .btn-danger:hover {
+    background-color: #cc0000;
+}

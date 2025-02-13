@@ -3,8 +3,8 @@
 <div class="container">
     <h1>Search Results</h1>
 
-    <% if (games.length === 0) { %>
-        <p>No games found for "<%= query %>".</p>
+    <% if (noResults) { %>
+        <p class="no-results">No games found for "<%= query %>". Try another search.</p>
     <% } else { %>
         <div class="game-list">
             <% games.forEach(game => { %>

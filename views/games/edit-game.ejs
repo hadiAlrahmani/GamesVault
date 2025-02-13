@@ -1,31 +1,39 @@
 <%- include('../partials/head') %>
 
-<div class="container">
+<div class="edit-game-container">
     <h1>Edit Game</h1>
 
-    <form action="/games/<%= game._id %>?_method=PUT" method="POST">
-        <label>Game Title:</label>
-        <input type="text" name="title" value="<%= game.title %>" required>
+    <form action="/games/<%= game._id %>?_method=PUT" method="POST" class="edit-game-form">
+        <div class="form-group">
+            <label for="title">Game Title:</label>
+            <input type="text" id="title" name="title" value="<%= game.title %>" required>
+        </div>
 
-        <label>Description:</label>
-        <textarea name="description" required><%= game.description %></textarea>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required><%= game.description %></textarea>
+        </div>
 
-        <label>Image URL:</label>
-        <input type="text" name="image" value="<%= game.image %>" required>
+        <div class="form-group">
+            <label for="image">Game Image URL:</label>
+            <input type="text" id="image" name="image" value="<%= game.image %>" required>
+        </div>
 
-        <label>Release Year:</label>
-        <input type="number" name="releaseYear" value="<%= game.releaseYear %>" required>
+        <div class="form-group">
+            <label for="releaseYear">Release Year:</label>
+            <input type="number" id="releaseYear" name="releaseYear" value="<%= game.releaseYear %>" required>
+        </div>
 
-        <label>Visibility:</label>
-        <select name="isPublic">
-            <option value="false" <%= game.isPublic ? '' : 'selected' %>>Private</option>
-            <option value="true" <%= game.isPublic ? 'selected' : '' %>>Public</option>
-        </select>
+        <div class="form-group">
+            <label for="isPublic">Game Visibility:</label>
+            <select id="isPublic" name="isPublic" required>
+                <option value="true" <%= game.isPublic ? "selected" : "" %>>Public</option>
+                <option value="false" <%= !game.isPublic ? "selected" : "" %>>Private</option>
+            </select>
+        </div>
 
-        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <button type="submit">Save Changes</button>
     </form>
-
-    <a href="/games/<%= game._id %>" class="btn btn-secondary">Cancel</a>
 </div>
 
 <%- include('../partials/footer') %>

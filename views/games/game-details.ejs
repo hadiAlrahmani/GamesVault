@@ -1,5 +1,13 @@
 <%- include('../partials/head') %>
 
+// done with additional help from internet
+<script>
+    function setDeleteGame(gameId, gameTitle) {
+        document.getElementById('gameTitle').innerText = gameTitle;
+        document.getElementById('deleteGameForm').action = `/games/${gameId}?_method=DELETE`;
+    }
+</script>
+
 <div class="container">
     <h1><%= game.title %></h1>
     <img src="<%= game.image %>" alt="<%= game.title %>" class="game-img">
@@ -11,12 +19,38 @@
     <!-- Show Edit & Delete buttons ONLY if the user owns the game -->
     <% if (user && user._id.toString() === game.owner._id.toString()) { %>
         <a href="/games/<%= game._id %>/edit" class="btn btn-primary">Edit</a>
-        <form action="/games/<%= game._id %>?_method=DELETE" method="POST" style="display:inline;">
-            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete <%= game.title %>?');">Delete</button>
-        </form>
+    <form action="/games/<%= game._id %>?_method=DELETE" method="POST" style="display:inline;">
+        <button
+            type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteGameModal"
+            onclick="setDeleteGame('<%= game._id %>', '<%= game.title %>')">
+            Delete
+        </button>
+    </form>
     <% } %>
 
     <a href="/" class="btn btn-secondary">Back to GamesVault</a>
+</div>
+
+// done with additional help from internet
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="deleteGameModal" tabindex="-1" aria-labelledby="deleteGameModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteGameModalLabel">Confirm Delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete "<span id="gameTitle"></span>"?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form id="deleteGameForm" method="POST">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <%- include('../partials/footer') %>
