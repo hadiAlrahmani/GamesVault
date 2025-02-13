@@ -20,6 +20,7 @@ const privateVault = async (req, res) => {
 }
 
 // render add form
+//! CREATE
 const addGameForm = (req, res) => {
     res.render('games/add-game.ejs', { title: 'Add Game' })
 }
@@ -28,6 +29,7 @@ const addGameForm = (req, res) => {
 const addGame = async (req, res) => {
     try {
         await Game.create({
+            //! CHALLENGING PART
             title: req.body.title,
             description: req.body.description,
             image: req.body.image,
@@ -62,6 +64,7 @@ const getGameDetails = async (req, res) => {
     }
 }
 
+//! UPDATE
 const editGameForm = async (req, res) => {
     try {
         // Check if the game exists & if loggedin user is owner
@@ -97,6 +100,7 @@ const updateGame = async (req, res) => {
     }
 }
 
+//! DELETE
 const deleteGame = async (req, res) => {
     try {
         const game = await Game.findById(req.params.id)
@@ -112,6 +116,7 @@ const deleteGame = async (req, res) => {
     }
 }
 
+//! READ
 const publicVault = async (req, res) => {
     try {
         const publicGames = await Game.find({ isPublic: true }).populate('owner', 'username')
@@ -122,6 +127,7 @@ const publicVault = async (req, res) => {
     }
 }
 
+//! FAV PART
 // done with additional help from internet
 const searchGames = async (req, res) => {
     try {

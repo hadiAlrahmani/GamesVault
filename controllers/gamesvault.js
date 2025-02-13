@@ -1,5 +1,6 @@
 const Game = require('../models/game')
 
+//! READ
 // retrieves and displays all public games on the home page
 const home = async (req, res) => {
     try {
