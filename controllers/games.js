@@ -1,5 +1,6 @@
 const Game = require('../models/game')
 
+// rendering the Private Vault page (where a logged-in user can see the games they have added)
 const privateVault = async (req, res) => {
     if (!req.session.user) {
         return res.redirect('/auth/sign-in')
@@ -18,6 +19,7 @@ const privateVault = async (req, res) => {
     }
 }
 
+// render add form
 const addGameForm = (req, res) => {
     res.render('games/add-game.ejs', { title: 'Add Game' })
 }
@@ -41,13 +43,14 @@ const addGame = async (req, res) => {
     }
 }
 
+// Fetch the game from the database using the ID
 const getGameDetails = async (req, res) => {
     try {
         const game = await Game.findById(req.params.id).populate('owner', '_id username')
         if (!game) {
             return res.redirect('/')
         }
-
+        // Render the Game Details in the page
         res.render('games/game-details.ejs', { 
             title: game.title, 
             game, 
@@ -61,6 +64,7 @@ const getGameDetails = async (req, res) => {
 
 const editGameForm = async (req, res) => {
     try {
+        // Check if the game exists & if loggedin user is owner
         const game = await Game.findById(req.params.id)
         if (!game || game.owner.toString() !== req.session.user._id.toString()) {
             return res.redirect('/private-vault')
@@ -78,7 +82,7 @@ const updateGame = async (req, res) => {
         if (!game || game.owner.toString() !== req.session.user._id.toString()) {
             return res.redirect('/private-vault')
         }
-
+        // Update game details with the new
         game.title = req.body.title
         game.description = req.body.description
         game.image = req.body.image
@@ -99,7 +103,7 @@ const deleteGame = async (req, res) => {
         if (!game || game.owner.toString() !== req.session.user._id.toString()) {
             return res.redirect('/private-vault')
         }
-
+        // Delete the game from the database
         await Game.findByIdAndDelete(req.params.id)
         res.redirect('/private-vault')
     } catch (error) {
@@ -118,18 +122,17 @@ const publicVault = async (req, res) => {
     }
 }
 
-
+// done with additional help from internet
 const searchGames = async (req, res) => {
     try {
-        const query = req.query.query // Get search term from URL
-        const user = req.session.user // Get logged-in user (if any)
+        const query = req.query.query
+        const user = req.session.user
 
-        // Search games by title (case-insensitive)
         const searchResults = await Game.find({
-            title: { $regex: query, $options: 'i' }, // 'i' makes it case-insensitive
+            title: { $regex: query, $options: 'i' },
             $or: [
-                { isPublic: true }, // Public games (everyone can see)
-                user ? { owner: user._id } : {} // User's private games (only they can see)
+                { isPublic: true }, // everyone can see
+                user ? { owner: user._id } : {} //only they can see
             ]
         }).populate('owner', 'username')
 

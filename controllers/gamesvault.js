@@ -1,5 +1,6 @@
 const Game = require('../models/game')
 
+// retrieves and displays all public games on the home page
 const home = async (req, res) => {
     try {
         const publicGames = await Game.find({ isPublic: true }).populate('owner', 'username')
