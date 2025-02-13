@@ -2,7 +2,7 @@
 * By: Hadi Alrahmani
 
 ## **App Preview:**
-<img width="1728" alt="Screenshot 2025-02-13 at 9 52 50 AM" src="https://github.com/user-attachments/assets/5d22d856-5b22-43cc-8ccf-11a15fcfdbef" />
+<img width="1728" alt="Screenshot 2025-02-13 at 10 53 05 AM" src="https://github.com/user-attachments/assets/61786424-6752-4a04-b7d6-978ac5d24bb9" />
 <img width="1728" alt="Screenshot 2025-02-13 at 9 53 28 AM" src="https://github.com/user-attachments/assets/df9d0d63-60fb-4cc1-8981-ccdb7de55e32" />
 <img width="1728" alt="Screenshot 2025-02-13 at 9 53 42 AM" src="https://github.com/user-attachments/assets/4befbcf8-36cc-41aa-b4fd-3fc0e371dc06" />
 <img width="1728" alt="Screenshot 2025-02-13 at 9 54 19 AM" src="https://github.com/user-attachments/assets/11a3cc2a-6525-451e-af91-5b3698293381" />
